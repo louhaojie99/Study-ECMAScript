@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      /*
+        在所有内置的可索引数据上新增.at()方法, 新增一个新的数组方法，通过给定的索引来获取一个元素
+        
+        当给定的索引为正数时，这个新方法的行为与使用括号符号的访问相同，
+        但是当我们给定一个负整数的索引时，它就像python的 "负数索引 "一样工作，
+        这意味着at()方法以负整数为索引，从数组的最后一项往后数。
+        所以该方法可以被执行为array.at(-1)，它的行为与array[array.length-1]相同，可以来看下面的例子：
+      */
+      let personList = ["小酷", "小新", "小樱"];
+
+      // step1: 假如我们想通过下标获取到 "小樱"
+      console.log(personList[2]); // 通常 中括号 填入对应的下标获取
+
+      // step2: es13 .at()方法获取一个元素
+      console.log(personList.at(2)); // 小樱
+
+      // step3: 上述看起来 .at() 方法并没有体现出来新的语法的便捷之处
+      //        假如我们想获取数组的最后一位的元素
+      let idx = personList.length - 1; // 普通做法
+      console.log(personList[idx]);
+      console.log(personList.at(-1)); // es13中 .at()新特性, 放入 -1 代表获取最后一位元素
+
+      let fakeIterationList = {
+        0: "小酷",
+        1: "小新",
+        2: "小樱",
+        length: 2,
+      };
+      console.log(fakeIterationList[2]);
+    </script>
+  </body>
+</html>

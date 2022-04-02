@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UT(F-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      // mock methods
+      async function getStudentList() {
+        return ["小酷", "小新", "小樱"];
+        // throw Error("Exception Message !!!"); // 测试 .catch捕获异常
+      }
+      // console.log(getStudentList());  // async 函数它是返回一个 Promise 对象
+
+      // case1:
+      getStudentList()
+        .then((response) => {
+          console.log("result: ", response); //  ['小酷', '小新', '小樱']
+        })
+        .catch((err) => {
+          console.log("err: ", err);
+        });
+
+      // case2
+      // es7 async await
+      (async () => {
+        const result = await getStudentList();
+        console.log(result); // ['小酷', '小新', '小樱']
+      })();
+    </script>
+
+    <script type="module">
+      // case3
+      /*
+        在这之前，await只能在async方法中使用。在ES2022的标准中，可以在async方法之外使用await。
+        例如，我们可以推迟一个模块及其父模块的执行，直到导入其它内容。
+      */
+      const list = await import("./utils.js");
+      console.log("list: ", list);
+    </script>
+  </body>
+</html>

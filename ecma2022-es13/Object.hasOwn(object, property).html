@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      /*
+        在JavaScript我们已经有了Object.prototype.hasOwnProperty
+        但是，正如MDN文档所指出的，最好不要使用hasOwnProperty在原型本身之外，因为它不是受保护的属性，
+        这意味着object可以叫它的财产hasOwnProperty与此无关Object.prototype.hasOwnProperty。
+        简单讲就是使用Object.hasOwn来替代Object.prototype.hasOwnProperty.call(太长了，不好看)🤣，可以来看下面的例子：
+      */
+      const obj = {
+        hasOwnProperty: () => {
+          return false;
+        },
+      };
+      obj.hasOwnProperty("prop"); // false
+
+      // 如您所见，我们定义了自己的方法hasOwnProperty，它覆盖了原型上的问题，这个问题不存在于Object.hasOwn()。🤐
+      // Object.hasOwn()拿走我们的Object作为第一个参数和我们要检查的第二个属性：
+      const student = {
+        name: "小酷",
+        age: 20,
+      };
+      Object.hasOwn(student, "age"); // true
+      Object.hasOwn(student, "sex"); // false
+    </script>
+  </body>
+</html>
